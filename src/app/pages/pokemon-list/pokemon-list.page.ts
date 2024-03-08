@@ -11,9 +11,16 @@ export class PokemonListPage implements OnInit {
   constructor(private pokeapi: PokemonService) {}
 
   ngOnInit() {
-    this.pokeapi.getPokemons().subscribe((data: any) => {
-      this.pokemonList = data;
-      console.log('data', this.pokemonList);
-    });
+   this.getPokemons();
+  }
+
+  getPokemons(): void {
+    for (let i = 1; i <= 151; i++) {
+      this.pokeapi.getPokemon(i)
+        .subscribe((data: any) => {
+          this.pokemonList.push(data);
+          console.log(this.pokemonList);
+        });
+    }
   }
 }
