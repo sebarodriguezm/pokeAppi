@@ -3,8 +3,9 @@
 <ion-content [fullscreen]="true">
  <ion-card *ngFor="let pokemon of pokemonList">
   <ion-card-header>
+
+    <img [src]="pokemon.sprites.other['official-artwork'].front_default" alt="">
     <ion-card-title>{{pokemon.name}}</ion-card-title>
-    <img [src]="pokemon.sprites.other['official-artwork'].front_shiny" alt="">
   </ion-card-header>
  </ion-card>
 </ion-content>

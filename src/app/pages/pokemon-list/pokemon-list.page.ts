@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { forkJoin } from 'rxjs';
 import { PokemonService } from 'src/app/services/pokemon.service';
 
 @Component({
@@ -8,19 +9,22 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 })
 export class PokemonListPage implements OnInit {
   pokemonList: any[] = [];
+
   constructor(private pokeapi: PokemonService) {}
 
   ngOnInit() {
-   this.getPokemons();
+    this.getPokemons();
   }
 
   getPokemons(): void {
+    const requests = [];
     for (let i = 1; i <= 151; i++) {
-      this.pokeapi.getPokemon(i)
-        .subscribe((data: any) => {
-          this.pokemonList.push(data);
-          console.log(this.pokemonList);
-        });
+      requests.push(this.pokeapi.getPokemon(i));
     }
+
+    forkJoin(requests).subscribe((data: any[]) => {
+      this.pokemonList = data;
+      console.log(this.pokemonList);
+    });
   }
 }
