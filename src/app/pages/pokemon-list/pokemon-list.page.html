@@ -2,10 +2,17 @@
 
 <ion-content [fullscreen]="true">
  <ion-card *ngFor="let pokemon of pokemonList">
-  <ion-card-header>
+  <ion-card-header *ngIf="pokemon && pokemon.sprites && pokemon.sprites.other">
 
     <img [src]="pokemon.sprites.other['official-artwork'].front_default" alt="">
     <ion-card-title>{{pokemon.name}}</ion-card-title>
   </ion-card-header>
  </ion-card>
+
+ <ion-infinite-scroll (ionInfinite)="loadMorePokemons($event)" threshold="100px">
+  <ion-infinite-scroll-content
+    loadingSpinner="bubbles"
+    loadingText="Cargando más Pokemons...">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
 </ion-content>
