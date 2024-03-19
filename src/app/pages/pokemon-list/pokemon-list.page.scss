@@ -1,0 +1,91 @@
+ion-chip.fire {
+    background: #FF7D0A;
+    color: #FFFFFF; /* Blanco */
+}
+
+ion-chip.water {
+    background: #6390F0;
+    color: #FFFFFF; /* Blanco */
+}
+
+ion-chip.grass {
+    background: #78C850;
+    color: #000000; /* Negro */
+}
+
+ion-chip.electric {
+    background: #F7D02C;
+    color: #000000; /* Negro */
+}
+
+ion-chip.ice {
+    background: #98D8D8;
+    color: #000000; /* Negro */
+}
+
+ion-chip.fighting {
+    background: #C03028;
+    color: #FFFFFF; /* Blanco */
+}
+
+ion-chip.poison {
+    background: #A040A0;
+    color: #FFFFFF; /* Blanco */
+}
+
+ion-chip.ground {
+    background: #E0C068;
+    color: #000000; /* Negro */
+}
+
+ion-chip.flying {
+    background: #A890F0;
+    color: #000000; /* Negro */
+}
+
+ion-chip.psychic {
+    background: #F85888;
+    color: #000000; /* Negro */
+}
+
+ion-chip.bug {
+    background: #A8B820;
+    color: #000000; /* Negro */
+}
+
+ion-chip.rock {
+    background: #B8A038;
+    color: #000000; /* Negro */
+}
+
+ion-chip.ghost {
+    background: #705898;
+    color: #FFFFFF; /* Blanco */
+}
+
+ion-chip.dark {
+    background: #705848;
+    color: #FFFFFF; /* Blanco */
+}
+
+ion-chip.dragon {
+    background: #7038F8;
+    color: #FFFFFF; /* Blanco */
+}
+
+ion-chip.steel {
+    background: #B8B8D0;
+    color: #000000; /* Negro */
+}
+
+ion-chip.fairy {
+    background: #EE99AC;
+    color: #000000; /* Negro */
+}
+
+/* Contenedor de chips */
+.type-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px; /* Espacio entre los chips */
+}

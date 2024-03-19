@@ -16,4 +16,8 @@ export class PokemonService {
     return this.http.get<any>(`${environment.pokemonApi.baseUrl}${id}`);
   }
 
+  getPokemonTypes(): Observable<any> {
+    return this.http.get<any>('https://pokeapi.co/api/v2/type');
+  }
+
 }

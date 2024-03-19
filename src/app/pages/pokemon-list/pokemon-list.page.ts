@@ -9,13 +9,24 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 })
 export class PokemonListPage implements OnInit {
   pokemonList: any[] = [];
- offset: number = 0;
+  pokemonTypes: string[] = [];
+  offset: number = 0;
+
   constructor(private pokeapi: PokemonService) {}
 
   ngOnInit() {
     this.getPokemons();
+    this.getPokemonTypes(); // Llama al método para obtener los tipos de Pokémon
   }
-                // obtener pokemons
+
+  // Obtener tipos de Pokémon
+  getPokemonTypes(): void {
+    this.pokeapi.getPokemonTypes().subscribe((data: any) => {
+      this.pokemonTypes = data.results.map((type: any) => type.name);
+    });
+  }
+
+  // Obtener pokemons
   getPokemons(offset: number = 0, limit: number = 25): void {
     const requests = [];
     for (let i = offset + 1; i <= offset + limit; i++) {
@@ -28,7 +39,7 @@ export class PokemonListPage implements OnInit {
     });
   }
   
-  loadMorePokemons(event:any): void {
+  loadMorePokemons(event: any): void {
     this.offset += 25; // Incrementar el offset para obtener el siguiente lote de Pokémon
     this.getPokemons(this.offset); // Cargar más Pokémon con el nuevo offset
 
@@ -37,5 +48,4 @@ export class PokemonListPage implements OnInit {
       event.target.complete();
     }, 500);
   }
-  
 }

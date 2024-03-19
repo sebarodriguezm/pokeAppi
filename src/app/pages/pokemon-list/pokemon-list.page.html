@@ -1,18 +1,37 @@
 
 
 <ion-content [fullscreen]="true">
- <ion-card *ngFor="let pokemon of pokemonList">
-  <ion-card-header *ngIf="pokemon && pokemon.sprites && pokemon.sprites.other">
 
-    <img [src]="pokemon.sprites.other['official-artwork'].front_default" alt="">
-    <ion-card-title>{{pokemon.name}}</ion-card-title>
-  </ion-card-header>
- </ion-card>
+  <div class="logo ion-text-center ion-padding-vertical">
+    <img src="../../../assets/img/logo.png" width="50%" alt="">
+  </div>
+
+  <div class="ion-text-center">
+    <div class="type-chips ion-padding-horizontal ion-justify-content-center">
+      <div  *ngFor="let type of pokemonTypes">
+        <ion-chip  [ngClass]="type">
+          <ion-label >{{ type }}</ion-label>
+        </ion-chip>
+      </div>
+    
+    </div>
+  </div>
+      
+  <ion-item *ngFor="let pokemon of pokemonList">
+    <ion-avatar>
+      <img [src]="pokemon.sprites.other['official-artwork'].front_default" />
+    </ion-avatar>
+    <ion-label>
+      <h2>{{pokemon.name}}</h2>
+    </ion-label>
+  </ion-item>
+
+
 
  <ion-infinite-scroll (ionInfinite)="loadMorePokemons($event)" threshold="100px">
   <ion-infinite-scroll-content
     loadingSpinner="bubbles"
-    loadingText="Cargando más Pokemons...">
+    loadingText="Cargando más Pokemon...">
   </ion-infinite-scroll-content>
 </ion-infinite-scroll>
 </ion-content>
