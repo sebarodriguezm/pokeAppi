@@ -11,6 +11,7 @@ export class PokemonListPage implements OnInit {
   pokemonList: any[] = [];
   pokemonTypes: string[] = [];
   offset: number = 0;
+  selectedType: string | null = null; // Nuevo campo para almacenar el tipo seleccionado
 
   constructor(private pokeapi: PokemonService) {}
 
@@ -22,7 +23,7 @@ export class PokemonListPage implements OnInit {
   // Obtener tipos
   getPokemonTypes(): void {
     this.pokeapi.getPokemonTypes().subscribe((data: any) => {
-      this.pokemonTypes = data.results.map((type: any) => type.name);
+      this.pokemonTypes = data.results.map((type: any) => type.name.toLowerCase().replace(' ', ''));
     });
   }
 
@@ -34,6 +35,10 @@ export class PokemonListPage implements OnInit {
     }
     // se usa forkjoin para que se carguen todos en paralelo y luego se guarda todo en pokemonList
     forkJoin(requests).subscribe((data: any[]) => {
+      // Si se ha seleccionado un tipo, filtrar los Pokémon por ese tipo
+      if (this.selectedType) {
+        data = data.filter(pokemon => pokemon.types.some((type: any) => type.type.name.toLowerCase().replace(' ', '') === this.selectedType));
+      }
       this.pokemonList = this.pokemonList.concat(data);
       console.log(this.pokemonList);
     });
@@ -47,5 +52,13 @@ export class PokemonListPage implements OnInit {
     setTimeout(() => {
       event.target.complete();
     }, 500);
+  }
+
+  // Método para filtrar Pokémon por tipo cuando se selecciona un chip
+  filterByType(type: string): void {
+    this.selectedType = type.toLowerCase().replace(' ', ''); // Convertir el tipo seleccionado a minúsculas y sin espacios
+    this.offset = 0; // Restablecer el offset al inicio
+    this.pokemonList = []; // Limpiar la lista de Pokémon actual
+    this.getPokemons(); // Obtener los Pokémon del tipo seleccionado
   }
 }

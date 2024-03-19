@@ -9,7 +9,7 @@
   <div class="ion-text-center ion-padding-vertical bg-header">
     <div class="type-chips ion-padding-horizontal ion-justify-content-center">
       <div  *ngFor="let type of pokemonTypes">
-        <ion-chip  [ngClass]="type">
+        <ion-chip  [ngClass]="type"  (click)="filterByType(type)">
           <ion-label >{{ type }}</ion-label>
         </ion-chip>
       </div>
