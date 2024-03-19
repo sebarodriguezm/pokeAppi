@@ -16,17 +16,17 @@ export class PokemonListPage implements OnInit {
 
   ngOnInit() {
     this.getPokemons();
-    this.getPokemonTypes(); // Llama al método para obtener los tipos de Pokémon
+    this.getPokemonTypes();
   }
 
-  // Obtener tipos de Pokémon
+  // Obtener tipos
   getPokemonTypes(): void {
     this.pokeapi.getPokemonTypes().subscribe((data: any) => {
       this.pokemonTypes = data.results.map((type: any) => type.name);
     });
   }
 
-  // Obtener pokemons
+  // Obtener pokemon
   getPokemons(offset: number = 0, limit: number = 25): void {
     const requests = [];
     for (let i = offset + 1; i <= offset + limit; i++) {
