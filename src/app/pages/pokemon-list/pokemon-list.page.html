@@ -17,14 +17,27 @@
     </div>
   </div>
       
-  <ion-item *ngFor="let pokemon of pokemonList">
-    <ion-avatar>
-      <img [src]="pokemon.sprites.other['official-artwork'].front_default" />
-    </ion-avatar>
-    <ion-label>
-      <h2>{{pokemon.name}}</h2>
-    </ion-label>
-  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let pokemon of pokemonList">
+
+        <ion-card>
+          <ion-card-header>
+            <img [src]="pokemon.sprites.other['official-artwork'].front_default" />
+          </ion-card-header>
+
+          <ion-card-content class="ion-text-center"> 
+            <ion-label class="title"> <b>
+              {{ pokemon.name }}
+            </b></ion-label>
+          </ion-card-content>
+        </ion-card>
+       
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  
 
 
 
