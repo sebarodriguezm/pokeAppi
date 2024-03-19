@@ -1,91 +1,104 @@
 ion-chip.fire {
     background: #FF7D0A;
-    color: #FFFFFF; /* Blanco */
+    color: #FFFFFF;
 }
 
 ion-chip.water {
     background: #6390F0;
-    color: #FFFFFF; /* Blanco */
+    color: #FFFFFF;
 }
 
 ion-chip.grass {
     background: #78C850;
-    color: #000000; /* Negro */
+    color: #000000;
 }
 
 ion-chip.electric {
     background: #F7D02C;
-    color: #000000; /* Negro */
+    color: #000000;
 }
 
 ion-chip.ice {
     background: #98D8D8;
-    color: #000000; /* Negro */
+    color: #000000;
 }
 
 ion-chip.fighting {
     background: #C03028;
-    color: #FFFFFF; /* Blanco */
+    color: #FFFFFF;
 }
 
 ion-chip.poison {
     background: #A040A0;
-    color: #FFFFFF; /* Blanco */
+    color: #FFFFFF;
 }
 
 ion-chip.ground {
     background: #E0C068;
-    color: #000000; /* Negro */
+    color: #000000;
 }
 
 ion-chip.flying {
     background: #A890F0;
-    color: #000000; /* Negro */
+    color: #000000;
 }
 
 ion-chip.psychic {
     background: #F85888;
-    color: #000000; /* Negro */
+    color: #000000;
 }
 
 ion-chip.bug {
     background: #A8B820;
-    color: #000000; /* Negro */
+    color: #000000;
 }
 
 ion-chip.rock {
     background: #B8A038;
-    color: #000000; /* Negro */
+    color: #000000;
 }
 
 ion-chip.ghost {
     background: #705898;
-    color: #FFFFFF; /* Blanco */
+    color: #FFFFFF;
 }
 
 ion-chip.dark {
     background: #705848;
-    color: #FFFFFF; /* Blanco */
+    color: #FFFFFF;
 }
 
 ion-chip.dragon {
     background: #7038F8;
-    color: #FFFFFF; /* Blanco */
+    color: #FFFFFF;
 }
 
 ion-chip.steel {
     background: #B8B8D0;
-    color: #000000; /* Negro */
+    color: #000000;
 }
 
 ion-chip.fairy {
     background: #EE99AC;
-    color: #000000; /* Negro */
+    color: #000000;
 }
 
-/* Contenedor de chips */
 .type-chips {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px; /* Espacio entre los chips */
+    gap: 8px;
+}
+
+ion-chip {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s; 
+}
+
+ion-chip:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    transform: scale(1.3); 
+}
+
+.bg-header{
+background-color: rgba(0, 0, 0, 0.05);
 }
