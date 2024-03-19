@@ -27,22 +27,32 @@ export class PokemonListPage implements OnInit {
     });
   }
 
-  // Obtener pokemon
   getPokemons(offset: number = 0, limit: number = 25): void {
     const requests = [];
     for (let i = offset + 1; i <= offset + limit; i++) {
       requests.push(this.pokeapi.getPokemon(i));
     }
-    // se usa forkjoin para que se carguen todos en paralelo y luego se guarda todo en pokemonList
+  
     forkJoin(requests).subscribe((data: any[]) => {
-      // Si se ha seleccionado un tipo, filtrar los Pokémon por ese tipo
+      console.log("Data received:", data); // Imprimir los datos recibidos
+  
       if (this.selectedType) {
-        data = data.filter(pokemon => pokemon.types.some((type: any) => type.type.name.toLowerCase().replace(' ', '') === this.selectedType));
+        data = data.filter(pokemon => {
+          console.log("Pokemon types:", pokemon.types); // Imprimir los tipos de cada Pokémon
+          return pokemon.types.some((type: any) => {
+            return type.type.name.includes(this.selectedType) ;
+          });
+        });
       }
       this.pokemonList = this.pokemonList.concat(data);
-      console.log(this.pokemonList);
+      console.log("Filtered data:", this.pokemonList); // Imprimir los datos filtrados
     });
   }
+  
+  
+  
+  
+  
   
   loadMorePokemons(event: any): void {
     this.offset += 25; // Incrementar el offset para obtener el siguiente lote de Pokémon
@@ -54,11 +64,16 @@ export class PokemonListPage implements OnInit {
     }, 500);
   }
 
-  // Método para filtrar Pokémon por tipo cuando se selecciona un chip
   filterByType(type: string): void {
-    this.selectedType = type.toLowerCase().replace(' ', ''); // Convertir el tipo seleccionado a minúsculas y sin espacios
-    this.offset = 0; // Restablecer el offset al inicio
-    this.pokemonList = []; // Limpiar la lista de Pokémon actual
-    this.getPokemons(); // Obtener los Pokémon del tipo seleccionado
+    this.selectedType = type; // Guarda el tipo seleccionado
+  
+    this.offset = 0; // Restablece el offset al inicio
+    this.pokemonList = []; // Limpia la lista de Pokémon actual
+  
+    console.log("Selected type:", this.selectedType); // Imprimir el tipo seleccionado
+  
+    this.getPokemons(); // Obtiene los Pokémon del tipo seleccionado
   }
+  
+  
 }
