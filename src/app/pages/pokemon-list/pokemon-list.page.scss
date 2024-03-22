@@ -90,6 +90,7 @@ ion-chip.fairy {
 }
 
 ion-chip {
+    width: 18vw;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s; 
 }
@@ -101,4 +102,23 @@ ion-chip:hover {
 
 .bg-header{
 background-color: rgba(0, 0, 0, 0.05);
+}
+
+ion-row{
+    background: linear-gradient( #0b810053, #07567860);
+}
+
+ion-card{
+   background: #ffffff; 
+   border: 5px solid #FFD700;
+   border-radius: 10%;
+}
+
+ion-grid{
+    margin: 0;
+    padding: 0;
+}
+
+.title{
+    font-size: 1.4rem;
 }

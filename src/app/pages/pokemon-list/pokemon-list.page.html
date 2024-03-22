@@ -6,20 +6,35 @@
     <img src="../../../assets/img/logo.png" width="50%" alt="">
   </div>
 
-  <div class="ion-text-center ion-padding-vertical bg-header">
-    <div class="type-chips ion-padding-horizontal ion-justify-content-center">
-      <div  *ngFor="let type of pokemonTypes">
-        <ion-chip  [ngClass]="type"  (click)="filterByType(type)">
-          <ion-label >{{ type }}</ion-label>
-        </ion-chip>
+ 
+
+ <div>
+  <img src="../../../assets/img/charizard.webp" width="100%" alt="">
+ </div>
+
+ <ion-accordion-group>
+  <ion-accordion value="first">
+    <ion-item slot="header" color="light">
+      <ion-label>Buscar por categoría </ion-label>
+    </ion-item>
+    <div class="ion-padding" slot="content">
+      <div class="ion-text-center ion-padding-vertical bg-header">
+        <div class="type-chips ion-justify-content-center">
+          <div  *ngFor="let type of pokemonTypes">
+            <ion-chip class=" ion-justify-content-center"  [ngClass]="type"  (click)="filterByType(type)">
+              <ion-label >{{ type }}</ion-label>
+            </ion-chip>
+          </div>
+        
+        </div>
       </div>
-    
     </div>
-  </div>
+  </ion-accordion>
+</ion-accordion-group>
       
-  <ion-grid>
+  <ion-grid no-padding>
     <ion-row>
-      <ion-col size="6" *ngFor="let pokemon of pokemonList">
+      <ion-col  size="6" *ngFor="let pokemon of pokemonList">
 
         <ion-card>
           <ion-card-header>
@@ -27,7 +42,7 @@
           </ion-card-header>
 
           <ion-card-content class="ion-text-center"> 
-            <ion-label class="title"> <b>
+            <ion-label color="dark" class="title"> <b>
               {{ pokemon.name }}
             </b></ion-label>
           </ion-card-content>
