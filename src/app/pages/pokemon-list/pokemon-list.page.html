@@ -1,20 +1,34 @@
 
 
-<ion-content [fullscreen]="true">
+<ion-content >
 
   <div class="logo ion-text-center ion-padding-vertical">
-    <img src="../../../assets/img/logo.png" width="50%" alt="">
+    <img src="../../../assets/img/logo.png" width="30%" alt="">
   </div>
 
  
 
- <div>
-  <img src="../../../assets/img/charizard.webp" width="100%" alt="">
- </div>
+<div class="header-container">
+  <div class="header-title">
+    <ion-label>
+      Conviértete <br>
+      en un <br>
+      maestro<br>
+      <ion-text color="warning">
+        <h1><b>Pokemon</b></h1>
+      </ion-text>
+    </ion-label>
+  </div>
 
- <ion-accordion-group>
+    <img src="../../../assets/img/header-img.png"alt="">
+</div>
+  
+
+
+
+ <ion-accordion-group class="ion-no-padding ion-no-margin">
   <ion-accordion value="first">
-    <ion-item slot="header" color="light">
+    <ion-item slot="header" color="dark">
       <ion-label>Buscar por categoría </ion-label>
     </ion-item>
     <div class="ion-padding" slot="content">
@@ -32,19 +46,46 @@
   </ion-accordion>
 </ion-accordion-group>
       
-  <ion-grid no-padding>
+  <ion-grid>
     <ion-row>
-      <ion-col  size="6" *ngFor="let pokemon of pokemonList">
+      <ion-col class="ion-padding-horizontal ion-padding-top" size="6" *ngFor="let pokemon of pokemonList">
 
-        <ion-card [routerLink]="'/pokemon-detail/' + pokemon.id">
+        <ion-card [routerLink]="'/pokemon-detail/' + pokemon.id"  [ngClass]="getCardClass(pokemon)">
           <ion-card-header>
             <img [src]="pokemon.sprites.other['official-artwork'].front_default" />
           </ion-card-header>
 
-          <ion-card-content class="ion-text-center ion-margin-top"> 
-            <ion-label color="dark" class="title ion-margin-top"> <b>
-              {{ pokemon.name }}
-            </b></ion-label>
+          <ion-card-content class="ion-text-center"> 
+
+          
+
+            <div class="info-pokemon">
+
+              <div class="types-container" [class.centered]="pokemon.types.length === 1">
+                <ng-container *ngFor="let type of pokemon.types">
+                  <ion-chip class="ion-justify-content-center card-chip" [ngClass]="type.type.name">
+                    <ion-label>{{ type.type.name }}</ion-label>
+                  </ion-chip>
+                </ng-container>
+              </div>
+
+              <div class="name ">
+                <ion-label color="light" class="title"> <b>
+                  {{ pokemon.name }} 
+                </b></ion-label>
+              </div>
+             
+              <ion-button size="small" [routerLink]="'/pokemon-detail/' + pokemon.id" expand="block">
+                <ion-icon  slot="start" name="add-circle" color="light"></ion-icon>
+                Más detalles
+               </ion-button>
+            </div>
+
+           
+            <!-- <ion-item class="stats-container">
+              <ion-label class="stat" color="light"><b> {{ pokemon.height }} M</b> </ion-label>
+              <ion-label class="stat" color="light"><b> {{ pokemon.weight }} K</b> </ion-label>
+            </ion-item> -->
           </ion-card-content>
         </ion-card>
        
@@ -62,4 +103,10 @@
     loadingText="Cargando más Pokemon...">
   </ion-infinite-scroll-content>
 </ion-infinite-scroll>
+
 </ion-content>
+
+<ion-footer>
+
+  <img src="../../../assets//img/pasto.png" alt="Maleza" class="maleza-image">
+</ion-footer>

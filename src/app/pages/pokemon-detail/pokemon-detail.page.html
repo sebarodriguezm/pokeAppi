@@ -8,17 +8,87 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content>
 
   <ion-card *ngIf="pokemon">
     <ion-card-header *ngIf="pokemon && pokemon.sprites && pokemon.sprites.other" class="ion-justify-content-center ion-align-items-center">
-      <img width="50%" [src]="pokemon.sprites.other['official-artwork'].front_default" />
+      <img width="90%" [src]="pokemon.sprites.other['official-artwork'].front_default" />
+
     
     </ion-card-header>
-    <ion-card-content class="ion-text-center ion-padding-top">
-      <ion-label color="dark" class="name"><b>{{ pokemon.name }}</b></ion-label>
-         <h2 *ngIf="pokemon && pokemon.abilities">{{ pokemon.abilities[0].ability.name }}</h2>
-    </ion-card-content>
+  <ion-card-content>
+    <div class="name ion-text-center">
+      <ion-label color="light" class="title"> <b>
+        {{ pokemon.name }} 
+      </b></ion-label>
+    </div>
+
+    <div class="types-container ion-justify-content-center" >
+      <ng-container *ngFor="let type of pokemon.types">
+        <ion-chip class="ion-justify-content-center card-chip" [ngClass]="type.type.name">
+          <ion-label>{{ type.type.name }}</ion-label>
+        </ion-chip>
+      </ng-container>
+    </div>
+
+    <div class="info">
+      <ion-row>
+        <ion-col size="12" class="col-border-stat ion-padding ion-margin-top" >
+          <div >
+            <ion-label color="light" class="sub-title">Estadisticas</ion-label>
+          </div>
+
+
+          <ion-row>
+            <ion-col size="6" *ngFor="let stat of pokemon.stats">
+              
+                <ion-label class="stat" color="light"><ion-text color="warning">
+                  {{ stat.stat.name }}:
+                </ion-text><ion-text color="success">
+                  {{ stat.base_stat }}
+                </ion-text> </ion-label>
+         
+            </ion-col>
+          </ion-row>
+         
+        </ion-col>
+
+        <ion-col size="12" class="col-border-stat ion-padding ">
+          <div >
+            <ion-label color="secondary" class="sub-title">Habilidades</ion-label>
+          </div>
+         
+          <ion-row>
+            <ion-col size="6" *ngFor="let hab of pokemon.abilities">
+              
+                <ion-label class="stat" color="light"><ion-text color="warning">
+                  {{ hab.ability.name }}:
+                </ion-text></ion-label>
+         
+            </ion-col>
+          </ion-row>
+         
+        </ion-col>
+      </ion-row>
+      <ion-row class="stats-container ion-padding-top">
+        <ion-col   size="5" class="ion-text-center col-border">
+          <ion-label color="light" class="sub-title"> <b>
+            {{ pokemon.height }} M 
+          </b></ion-label>
+        </ion-col>
+        <ion-col size="2">
+          
+        </ion-col>
+        <ion-col  size="5" class="ion-text-center col-border">
+          <ion-label color="light" class="sub-title"> <b>
+            {{ pokemon.weight }} Kg
+          </b></ion-label>
+        </ion-col>
+      </ion-row>
+      
+    </div>
+    
+  </ion-card-content>
   </ion-card>
   
 </ion-content>

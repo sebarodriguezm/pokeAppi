@@ -75,5 +75,15 @@ export class PokemonListPage implements OnInit {
     this.getPokemons(); // Obtiene los Pokémon del tipo seleccionado
   }
   
-  
+  getCardClass(pokemon: any): string {
+    let typeClass = '';
+
+    // Verificar si el Pokémon tiene tipos
+    if (pokemon.types && pokemon.types.length > 0) {
+      const typeName = pokemon.types[0].type.name.toLowerCase();
+      typeClass = `${typeName}-background`;
+    }
+
+    return typeClass;
+  }
 }

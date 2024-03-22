@@ -25,6 +25,116 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-.title{
-    font-size: 1rem;
+
+ion-chip.fire {
+    background: #FF7D0A;
+    color: #FFFFFF;
+}
+
+ion-chip.water {
+    background: #6390F0;
+    color: #FFFFFF;
+}
+
+ion-chip.grass {
+    background: #78C850;
+    color: #000000;
+}
+
+ion-chip.electric {
+    background: #F7D02C;
+    color: #000000;
+}
+
+ion-chip.ice {
+    background: #98D8D8;
+    color: #000000;
+}
+
+ion-chip.fighting {
+    background: #C03028;
+    color: #FFFFFF;
+}
+
+ion-chip.poison {
+    background: #A040A0;
+    color: #FFFFFF;
+}
+
+ion-chip.ground {
+    background: #E0C068;
+    color: #000000;
+}
+
+ion-chip.flying {
+    background: #A890F0;
+    color: #000000;
+}
+
+ion-chip.psychic {
+    background: #F85888;
+    color: #000000;
+}
+
+ion-chip.bug {
+    background: #A8B820;
+    color: #000000;
+}
+
+ion-chip.rock {
+    background: #B8A038;
+    color: #000000;
+}
+
+ion-chip.ghost {
+    background: #705898;
+    color: #FFFFFF;
+}
+
+ion-chip.dark {
+    background: #705848;
+    color: #FFFFFF;
+}
+
+ion-chip.dragon {
+    background: #7038F8;
+    color: #FFFFFF;
+}
+
+ion-chip.steel {
+    background: #B8B8D0;
+    color: #000000;
+}
+
+ion-chip.fairy {
+    background: #EE99AC;
+    color: #000000;
+}
+
+
+
+
+  .title{
+    font-size: 2.5rem;
+  }
+
+  .sub-title{
+    font-size: 1.5rem;
+  }
+
+.type-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+ion-chip {
+    width: 18vw;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s; 
+}
+
+ion-chip:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    transform: scale(1.3); 
 }

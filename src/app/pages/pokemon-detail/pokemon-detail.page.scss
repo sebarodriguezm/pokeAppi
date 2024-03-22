@@ -1,32 +1,58 @@
+ion-content{
+    --background: black;
+}
+
 ion-card{
     padding: 0;
     margin: 0;
     width: 100%;
     height: 100%;
-    border-radius: 3%;
-    //background: linear-gradient( #0408ff53, #008cff60);
+    background: black;
     box-shadow: 0, 0 , 0, 0.5;
    
 }
 
 ion-card-header{
-    background-image: url(../../../assets/img/fondo-efecto-zoom-degradado-azul_23-2149762303.avif);
+    background-image: url(../../../assets/img/bg-grass2.png);
     background-size: cover;
+    background-repeat: no-repeat;
     border: 2px solid black;
+    height: 40vh;
 }
 
 ion-card-content{
-    background-image: url(../../../assets/img//fondoblue.webp);
-    background-size: cover;
     border: 2px solid black;
     height: 100%;
 }
 
-ion-content{
-    --background: url(../../../assets/img/fire.jpg);
-    background-size: cover;
+
+
+
+.types-container.centered {
+    display: flex;
+    justify-content: center;
+  }
+  
+.types-container{
+    display: flex;
+    flex-direction: row;
 }
 
-.name{
-    font-size: 2rem;
+.stats-container{
+    .col-border{
+        border: 1px solid #000000;
+        background: #252525 !important;
+      
+    }
+}
+
+.stat{
+    font-size: 1.1rem;
+}
+
+.info{
+    .col-border-stat{
+       
+        border-radius: 10%;
+    }
 }
