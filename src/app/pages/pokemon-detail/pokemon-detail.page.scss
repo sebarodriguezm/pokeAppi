@@ -1,0 +1,32 @@
+ion-card{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 3%;
+    //background: linear-gradient( #0408ff53, #008cff60);
+    box-shadow: 0, 0 , 0, 0.5;
+   
+}
+
+ion-card-header{
+    background-image: url(../../../assets/img/fondo-efecto-zoom-degradado-azul_23-2149762303.avif);
+    background-size: cover;
+    border: 2px solid black;
+}
+
+ion-card-content{
+    background-image: url(../../../assets/img//fondoblue.webp);
+    background-size: cover;
+    border: 2px solid black;
+    height: 100%;
+}
+
+ion-content{
+    --background: url(../../../assets/img/fire.jpg);
+    background-size: cover;
+}
+
+.name{
+    font-size: 2rem;
+}

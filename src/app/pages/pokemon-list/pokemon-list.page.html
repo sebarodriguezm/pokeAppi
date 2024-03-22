@@ -36,13 +36,13 @@
     <ion-row>
       <ion-col  size="6" *ngFor="let pokemon of pokemonList">
 
-        <ion-card>
+        <ion-card [routerLink]="'/pokemon-detail/' + pokemon.id">
           <ion-card-header>
             <img [src]="pokemon.sprites.other['official-artwork'].front_default" />
           </ion-card-header>
 
-          <ion-card-content class="ion-text-center"> 
-            <ion-label color="dark" class="title"> <b>
+          <ion-card-content class="ion-text-center ion-margin-top"> 
+            <ion-label color="dark" class="title ion-margin-top"> <b>
               {{ pokemon.name }}
             </b></ion-label>
           </ion-card-content>

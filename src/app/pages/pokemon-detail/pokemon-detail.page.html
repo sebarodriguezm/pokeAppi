@@ -1,13 +1,24 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>pokemon-detail</ion-title>
+
+ <ion-buttons slot="start" text="">
+  <ion-back-button></ion-back-button>
+ </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">pokemon-detail</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+
+  <ion-card *ngIf="pokemon">
+    <ion-card-header *ngIf="pokemon && pokemon.sprites && pokemon.sprites.other" class="ion-justify-content-center ion-align-items-center">
+      <img width="50%" [src]="pokemon.sprites.other['official-artwork'].front_default" />
+    
+    </ion-card-header>
+    <ion-card-content class="ion-text-center ion-padding-top">
+      <ion-label color="dark" class="name"><b>{{ pokemon.name }}</b></ion-label>
+         <h2 *ngIf="pokemon && pokemon.abilities">{{ pokemon.abilities[0].ability.name }}</h2>
+    </ion-card-content>
+  </ion-card>
+  
 </ion-content>
