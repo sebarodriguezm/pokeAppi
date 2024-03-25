@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 import { PokemonService } from 'src/app/services/pokemon.service';
 
 @Component({
@@ -19,34 +20,28 @@ export class PokemonDetailPage implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-    this.getPokemon(this.id);
-    this.getEvolutionChain(this.id);
+    this.getPokemonDetails(this.id);
   }
 
-  getPokemon(id: number) {
-    this.pokeapi.getPokemon(id).subscribe((response) => {
-      this.pokemon = response;
-      this.getPokemonSpecies(response.id);
-    }, (error) => {
-      console.error('Error fetching Pokemon:', error);
-    });
-  }
-
-  getPokemonSpecies(id: number) {
-    this.pokeapi.getPokemonSpecies(id).subscribe((response) => {
-      
-      this.getEvolutionChain(id);
-    }, (error) => {
-      console.error('Error fetching Pokemon species:', error);
-    });
-  }
-
-  getEvolutionChain(id:number) {
-    this.pokeapi.getEvolutionChain(this.id).subscribe((response) => {
-      this.evolutionChain = response.chain;
-      console.log('Evolution chain:', this.evolutionChain);
-    }, (error) => {
-      console.error('Error fetching evolution chain:', error);
-    });
+  getPokemonDetails(id: number) {
+    this.pokeapi.getPokemon(id).pipe(
+      switchMap(pokemon => {
+        this.pokemon = pokemon;
+        return this.pokeapi.getPokemonSpecies(id);
+      }),
+      switchMap(species => {
+        // Puedes realizar más operaciones aquí si es necesario
+        return this.pokeapi.getEvolutionChain(id);
+      })
+    ).subscribe(
+      evolutionChain => {
+        this.evolutionChain = evolutionChain.chain;
+        console.log('Evoluciones:', this.evolutionChain);
+      },
+      error => {
+        console.error('Error obteniendo los datos del pokemon:', error);
+        // Aquí podrías mostrar un mensaje de error al usuario
+      }
+    );
   }
 }
