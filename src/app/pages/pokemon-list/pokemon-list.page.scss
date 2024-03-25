@@ -74,13 +74,13 @@ ion-card{
    border-radius: 10%;
    
    .title{
-    font-size: 1.2rem;
+    font-size: 5vw;
     }
 
     .info-pokemon{
 
         ion-button{
-            font-size: .7rem;
+            font-size: 2.5vw;
             --background: rgba(0, 0, 0, 0.29);
         }
         
@@ -92,6 +92,12 @@ ion-card{
         .types-container{
             display: flex;
             flex-direction: row;
+
+            ion-chip{
+              ion-label{
+                font-size: 3vw;
+              }
+            }
         }
     
         .stats-container{
@@ -100,7 +106,7 @@ ion-card{
             --inner-padding-end: 0px;
     
             .stat{
-                font-size: 1.2rem;
+                font-size: 2vw;
             }
         }
     }
