@@ -19,7 +19,6 @@
     <img src="../../../assets/img/header-img.png" alt="" />
   </div>
 
-
   <!-- Busqueda por categoria -->
   <ion-accordion-group class="ion-no-padding ion-no-margin">
     <ion-accordion value="first">
@@ -43,7 +42,6 @@
       </div>
     </ion-accordion>
   </ion-accordion-group>
-
 
   <!-- grid con las card pokemon -->
   <ion-grid>
@@ -86,15 +84,9 @@
               </div>
 
               <ion-button
-                size="small"
                 [routerLink]="'/pokemon-detail/' + pokemon.id"
                 expand="block"
               >
-                <ion-icon
-                  slot="start"
-                  name="add-circle"
-                  color="light"
-                ></ion-icon>
                 Más detalles
               </ion-button>
             </div>

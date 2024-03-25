@@ -47,20 +47,28 @@
   }
 
 
-ion-content{
-    --background: black;
+
+// Header
+.header-container{
+  position: relative;
+
+  .header-title{
+      position: absolute;
+      top: 10%;
+      left: 5%;
+  
+      ion-label{
+          font-size: 1.7rem;
+          font-weight: 500;
+      }
+  
+      h1{
+          font-size: 2rem;
+      }
+  }
 }
 
-ion-grid{
-    margin: 0;
-    padding: 0;
-}
-
-
-ion-row{
-    background: black;
-}
-
+// cards pokemon
 ion-card{
     background: linear-gradient(#00000053, #07780b60);; 
    border-radius: 10%;
@@ -72,7 +80,7 @@ ion-card{
     .info-pokemon{
 
         ion-button{
-            font-size: .5rem;
+            font-size: .7rem;
             --background: rgba(0, 0, 0, 0.29);
         }
         
@@ -102,38 +110,18 @@ ion-card{
 
 
 
-  
-
-.header-container{
-    position: relative;
-
-    .header-title{
-        position: absolute;
-        top: 10%;
-        left: 5%;
-    
-        ion-label{
-            font-size: 1.7rem;
-            font-weight: 500;
-        }
-    
-        h1{
-            font-size: 2rem;
-        }
-    }
-}
-
-
 ion-footer {
     position: relative;
+
+    .maleza-image {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      z-index: -1; /* Asegura que la imagen esté detrás de cualquier otro contenido del footer */
+    }
+    
   }
   
-  .maleza-image {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: auto;
-    z-index: -1; /* Asegura que la imagen esté detrás de cualquier otro contenido del footer */
-  }
-  
+ 
