@@ -64,20 +64,20 @@
           <ion-card-content class="ion-text-center">
             <div class="info-pokemon">
               <div
-                class="types-container"
-                [class.centered]="pokemon.types.length === 1"
+                class="types-container ion-justify-content-center"
+               
               >
-                <ng-container *ngFor="let type of pokemon.types">
+                <ion-item *ngFor="let type of pokemon.types">
                   <ion-chip
                     class="ion-justify-content-center card-chip"
                     [ngClass]="type.type.name"
                   >
                     <ion-label>{{ type.type.name }}</ion-label>
                   </ion-chip>
-                </ng-container>
+                </ion-item>
               </div>
 
-              <div class="name">
+              <div class="name ion-justify-te-center">
                 <ion-label color="light" class="title">
                   <b> {{ pokemon.name }} </b></ion-label
                 >
