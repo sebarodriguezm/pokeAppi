@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { forkJoin } from 'rxjs';
+import { forkJoin, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { PokemonService } from 'src/app/services/pokemon.service';
 
 @Component({
@@ -11,79 +12,70 @@ export class PokemonListPage implements OnInit {
   pokemonList: any[] = [];
   pokemonTypes: string[] = [];
   offset: number = 0;
-  selectedType: string | null = null; // Nuevo campo para almacenar el tipo seleccionado
+  selectedType: string | null = null;
 
   constructor(private pokeapi: PokemonService) {}
 
   ngOnInit() {
-    this.getPokemons();
     this.getPokemonTypes();
+    this.loadPokemons();
   }
 
-  // Obtener tipos
   getPokemonTypes(): void {
-    this.pokeapi.getPokemonTypes().subscribe((data: any) => {
+    this.pokeapi.getPokemonTypes().pipe(
+      catchError(error => {
+        console.error('Error obteniendo los tipos:', error);
+        return throwError(error);
+      })
+    ).subscribe((data: any) => {
       this.pokemonTypes = data.results.map((type: any) => type.name.toLowerCase().replace(' ', ''));
     });
   }
 
-  getPokemons(offset: number = 0, limit: number = 25): void {
+  loadPokemons(): void {
     const requests = [];
-    for (let i = offset + 1; i <= offset + limit; i++) {
+    for (let i = this.offset + 1; i <= this.offset + 25; i++) {
       requests.push(this.pokeapi.getPokemon(i));
     }
   
-    forkJoin(requests).subscribe((data: any[]) => {
-      console.log("Data received:", data); // Imprimir los datos recibidos
-  
+    forkJoin(requests).pipe(
+      catchError(error => {
+        console.error('Error obteniendo datos de los pokemon:', error);
+        return throwError(error);
+      })
+    ).subscribe((data: any[]) => {
       if (this.selectedType) {
         data = data.filter(pokemon => {
-          console.log("Pokemon types:", pokemon.types); // Imprimir los tipos de cada Pokémon
           return pokemon.types.some((type: any) => {
-            return type.type.name.includes(this.selectedType) ;
+            return type.type.name.includes(this.selectedType);
           });
         });
       }
-      this.pokemonList = this.pokemonList.concat(data);
-      console.log("Filtered data:", this.pokemonList); // Imprimir los datos filtrados
+      this.pokemonList.push(...data);
     });
   }
-  
-  
-  
-  
-  
-  
-  loadMorePokemons(event: any): void {
-    this.offset += 25; // Incrementar el offset para obtener el siguiente lote de Pokémon
-    this.getPokemons(this.offset); // Cargar más Pokémon con el nuevo offset
 
-    // Finalizar el evento de carga infinita
+  loadMorePokemons(event: any): void {
+    this.offset += 25;
+    this.loadPokemons();
+
     setTimeout(() => {
       event.target.complete();
     }, 500);
   }
 
   filterByType(type: string): void {
-    this.selectedType = type; // Guarda el tipo seleccionado
-  
-    this.offset = 0; // Restablece el offset al inicio
-    this.pokemonList = []; // Limpia la lista de Pokémon actual
-  
-    console.log("Selected type:", this.selectedType); // Imprimir el tipo seleccionado
-  
-    this.getPokemons(); // Obtiene los Pokémon del tipo seleccionado
+    this.selectedType = type;
+    this.offset = 0;
+    this.pokemonList = [];
+
+    this.loadPokemons();
   }
-  
+
   getCardClass(pokemon: any): string {
-    let typeClass = '';
-
-    // Verificar si el Pokémon tiene tipos
     if (pokemon.types && pokemon.types.length > 0) {
-      const typeName = pokemon.types[0].type.name.toLowerCase();
-      typeClass = `${typeName}-background`;
+      return `${pokemon.types[0].type.name.toLowerCase()}-background`;
     }
-
-    return typeClass;
+    return '';
   }
 }
